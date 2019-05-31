@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TestApp.UI.Models.LogoViewModel>
+
+@{
+    ViewBag.Title = "Logos";
+}
+<div class="pull-right" style="margin-top:25px;">
+    @using (Html.BeginForm("Logos", "Home", FormMethod.Get))
+    {
+        <p>
+            Find by name: @Html.TextBox("searchString")
+            <input type="submit" class="btn btn-primary" value="Search" />
+        </p>
+    }
+</div>
+<div style="margin-bottom:100px;">
+    <h3>
+        Filter By Category:
+        @foreach (var item in ViewBag.Categories)
+        {
+            <span><a href="@Url.Action("Logos", new { categoryId = item.Id })">@item.Name</a>/</span> 
+        }
+    </h3>
+</div>
+
+@if(ViewBag.Tags != null)
+{
+    <h4>Filter by tags: 
+    @foreach(var i in ViewBag.Tags)
+    {
+        <span><a href="@Url.Action("Logos", new { categoryId = i.CategoryId, tagId = i.Id })">@i.Name</a>/</span>
+    }
+    </h4>
+}
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="logo-cover">
+                <a href="@Url.Action("Details", new { logoId = item.Id })">
+                    <div class="logo-image">
+                        <img src="@Url.Content(item.ImagePath)" alt="cant display the image" class="img img-responsive" />
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+
+

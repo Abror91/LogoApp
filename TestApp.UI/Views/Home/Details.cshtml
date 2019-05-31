@@ -1,0 +1,44 @@
+﻿@model TestApp.UI.Models.LogoViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h2 style="text-align:center;">@Model.CompanyName</h2>
+        <img style="max-height:250px;" src="@Url.Content(Model.ImagePath)" class="img-responsive" alt="Can't display the image" />
+    </div>
+</div>
+<div class="row" style="margin:100px 0;">
+    <div class="col-md-4 text-center" style="margin-bottom:50px;">
+        <a href="@Url.Action("Download", new { imagePath = Model.ImagePath, format = ".png", companyName = Model.CompanyName })" class="btn btn-primary">
+            Download in <span style="font-weight:bold;">.png</span> format
+        </a>
+    </div>
+    <div class="col-md-4 text-center" style="margin-bottom:50px;">
+        <a href="@Url.Action("Download", new { imagePath = Model.ImagePath, format = ".jpg", companyName = Model.CompanyName })" class="btn btn-primary">
+            Download in <span style="font-weight:bold;">.jpg</span> format
+        </a>
+    </div>
+    <div class="col-md-4 text-center" style="margin-bottom:50px;">
+        <a href="@Url.Action("Download", new { imagePath = Model.ImagePath, format = ".tiff", companyName = Model.CompanyName })" class="btn btn-primary">
+            Download in <span style="font-weight:bold;">.tiff</span> format
+        </a>
+    </div>
+    <div class="col-md-4 text-center" style="margin-bottom:50px;">
+        <a href="@Url.Action("Download", new { imagePath = Model.ImagePath, format = ".cdr", companyName = Model.CompanyName })" class="btn btn-primary">
+            Download in <span style="font-weight:bold;">.cdr</span> format
+        </a>
+    </div>
+    <div class="col-md-4 text-center" style="margin-bottom:50px;">
+        <a href="@Url.Action("Download", new { imagePath = Model.ImagePath, format = ".ai", companyName = Model.CompanyName })" class="btn btn-primary">
+            Download in <span style="font-weight:bold;">.ai</span> format
+        </a>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Logos")
+</p>
